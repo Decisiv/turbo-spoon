@@ -9,5 +9,9 @@ LABEL "repository"="http://github.com/Decisiv/turbo-spoon"
 LABEL "homepage"="http://github.com/Decisiv/turbo-spoon"
 LABEL "maintainer"="Ryan Billington <rbillington@decisiv.com>"
 
-ADD entrypoint.sh /entrypoint.sh
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl ca-certificates
+
+COPY entrypoint.sh furypush.sh /
 ENTRYPOINT ["/entrypoint.sh"]
+CMD ["*.gem"]
